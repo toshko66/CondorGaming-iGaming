@@ -1,0 +1,92 @@
+$primary-color: #ffffff;
+$secondary-color:#ed4a60;
+$third-color:#efcc74;
+$fourth-color: #ffd3bc;
+
+
+
+
+@mixin make-container() {
+    width: 65%;
+    z-index: 999;
+    margin: 60px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+  // Usage
+  .custom-container {
+    @include make-container();
+  }
+
+
+@mixin make-container(){
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 70px 0px 70px 0px;
+}
+
+
+.wrapper{
+    @include make-container()
+}
+
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+      @media (max-width: 480px) { @content; }
+  }
+  @else if $breakpoint == "tablet-portrait" {
+      @media (min-width: 481px) and (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == "tablet-landscape" {
+      @media (min-width: 769px) and (max-width: 992px) { @content; }
+  }
+  @else if $breakpoint == "desktop" {
+      @media (min-width: 993px) and (max-width: 1439px) { @content; }
+  }
+  @else if $breakpoint == "desktop-xl" {
+    @media (min-width: 1440px) { @content; }
+  }
+}
+
+
+@mixin fontSizeAcrossBreakpoints($fontSizesMap) {
+  @each $breakpoint, $sizes in $fontSizesMap {
+      $h2Size: nth($sizes, 1);
+      $pSize: nth($sizes, 2);
+
+      @include respond-to($breakpoint) { 
+          h2 {
+              font-size: $h2Size;
+          }
+          p {
+              font-size: $pSize;
+          }
+      }
+  }
+}
+
+.wrapper {
+  @include fontSizeAcrossBreakpoints((
+      "mobile":(1.5rem,.8rem),
+      "tablet-portrait": (3em, 1.4em),
+      "tablet-landscape": (2.9em, 1.4em),
+      "desktop": (3em, 1.8em),
+      "desktop-xl":(4em,2em)
+  ));
+}
+
+
+@mixin below-1024 {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin below-768{
+  @media (max-width: 768px){
+    @content;
+  }
+}
