@@ -26,13 +26,17 @@ Condor Affiliates is a platform dedicated to providing comprehensive information
 ## Getting Started
 
 1. Clone the repository:
- git clone (insert path to repo here)
+   git clone https://github.com/toshko66/CondorGamingTask.git
 
 2. Change the directory:
 
-   cd (path to project)
+   cd CondorGamingTask
 
-3. If you've configured SCSS compilation using Node.js (for development purposes), run:
+3. Install the required packages. This will install all the required packages listed in your package.json file:
+
+    npm install
+
+5. If you've configured SCSS compilation using Node.js (for development purposes), run:
 
   npm run scss
 
